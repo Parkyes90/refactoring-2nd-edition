@@ -1,0 +1,22 @@
+{
+  "name": "refactoring-2nd-edition",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parkyes90/refactoring-2nd-edition.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Parkyes90/refactoring-2nd-edition/issues"
+  },
+  "homepage": "https://github.com/Parkyes90/refactoring-2nd-edition#readme",
+  "dependencies": {
+    "prettier": "^2.5.1"
+  }
+}
