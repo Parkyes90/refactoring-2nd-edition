@@ -1,1 +1,0 @@
-# typescirpts_tutorials
