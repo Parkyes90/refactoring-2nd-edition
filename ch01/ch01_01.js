@@ -23,6 +23,14 @@ function statement(invoice, plays) {
     }
     return result;
   }
+  function volumeCreditsFor(aPerformance) {
+    let result = 0;
+    result += Math.max(aPerformance.audience - 30, 0);
+    if ("comedy" === playFor(aPerformance).type) {
+      volumeCredits += Math.floor(aPerformance.audience / 5);
+    }
+    return result;
+  }
 
   let totalAmount = 0;
   let volumeCredits = 0;
@@ -34,15 +42,11 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    let thisAmount = amountFor(perf);
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    if ("comedy" === playFor(perf).type) {
-      volumeCredits += Math.floor(perf.audience / 5);
-    }
-    result += ` ${playFor(perf).name}: ${format(thisAmount / 100)} (${
+    volumeCredits += volumeCreditsFor(perf);
+    result += ` ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${
       perf.audience
     }석)\n`;
-    totalAmount += thisAmount;
+    totalAmount += amountFor(perf);
   }
   result += `총액: ${format(totalAmount / 100)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
