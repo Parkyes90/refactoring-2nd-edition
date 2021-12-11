@@ -6,7 +6,7 @@ export function createStatementData(invoice, plays) {
   statementData.totalVolumeCredits = totalVolumeCredits(statementData);
   return statementData;
   function enrichPerformance(aPerformance) {
-    const calculator = new PerformanceCalculator(
+    const calculator = createPerformanceCalculator(
       aPerformance,
       playFor(aPerformance)
     );
