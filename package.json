@@ -1,5 +1,6 @@
 {
   "name": "refactoring-2nd-edition",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,6 +21,7 @@
     "prettier": "^2.5.1"
   },
   "devDependencies": {
+    "assert": "^2.0.0",
     "mocha": "^9.1.3"
   }
 }
