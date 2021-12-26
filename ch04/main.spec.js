@@ -1,9 +1,9 @@
-import assert from "assert";
+import { expect } from "chai";
 import { Province, sampleProvinceData } from "./main.js";
 describe("provide", () => {
   it("shortfall", () => {
     const asia = new Province(sampleProvinceData());
 
-    assert.equal(asia.shortfall, 5);
+    expect(asia.shortfall).equal(5);
   });
 });
