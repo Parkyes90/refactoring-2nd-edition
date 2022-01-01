@@ -51,3 +51,18 @@ describe("no producers", () => {
     expect(noProducers.profit).equal(0);
   });
 });
+
+describe("string for producers", () => {
+  it("", () => {
+    const data = {
+      name: "String producers",
+      producers: "",
+      demand: 30,
+      prices: 20,
+    };
+    expect(() => {
+      const prov = new Province(data);
+      prov.shortfall;
+    }).to.throw(TypeError);
+  });
+});
