@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Parkyes90/refactoring-2nd-edition#readme",
   "dependencies": {
+    "lodash": "^4.17.21",
     "prettier": "^2.5.1"
   },
   "devDependencies": {
