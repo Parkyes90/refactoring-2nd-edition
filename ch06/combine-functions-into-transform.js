@@ -2,16 +2,23 @@ import _ from "lodash";
 
 function base(aReading) {}
 
+function calculateBaseCharge(aReading) {
+  return baseRate(aReading.month, aReading.year) * aReading.quantity;
+}
+
 function taxableCharge(aReading) {}
 
 function baseRate() {}
 function taxThreshold() {}
 
 function enrichReading(argReading) {
-  const aReading = _.cloneDeep(argReading);
-  aReading.baseCharge = base(aReading);
-  aReading.taxableCharge = taxableCharge(aReading);
-  return aReading;
+  const result = _.cloneDeep(argReading);
+  result.baseCharge = calculateBaseCharge(result);
+  result.taxableCharge = Math.max(
+    0,
+    result.baseCharge - taxThreshold(result.year)
+  );
+  return result;
 }
 
 const acquireReading = () => {
@@ -24,22 +31,22 @@ const acquireReading = () => {
 };
 
 const client1 = () => {
-  const aReading = acquireReading();
-  const baseCharge =
-    baseRate(aReading.month, aReading.year) * aReading.quantity;
+  const rawReading = acquireReading();
+  const aReading = enrichReading(rawReading);
+
+  const baseCharge = aReading.baseCharge;
 };
 
 const client2 = () => {
-  const aReading = acquireReading();
-  const baseCharge =
-    baseRate(aReading.month, aReading.year) * aReading.quantity;
-  const taxableCharge = Math.max(0, base - taxThreshold(aReading.year));
+  const rawReading = acquireReading();
+  const aReading = enrichReading(rawReading);
+
+  const taxableCharge = aReading.taxableCharge;
 };
 
 const client3 = () => {
-  const aReading = acquireReading();
-  const baseCharge = calculateBaseCharge(aReading);
-  function calculateBaseCharge(aReading) {
-    return baseRate(aReading.month, aReading.year) * aReading.quantity;
-  }
+  const rawReading = acquireReading();
+  const aReading = enrichReading(rawReading);
+
+  const baseCharge = aReading.baseCharge;
 };
